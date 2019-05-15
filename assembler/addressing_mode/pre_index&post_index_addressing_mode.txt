@@ -1,4 +1,5 @@
 ARM Addressing Modes (Pre-Indexing)
+===================================
 [Rn, ±Rm] Register offset
 Address accessed is the value in Rn ± the value in Rm. Rn and Rm do not change values.
 Example:
@@ -9,4 +10,48 @@ Address accessed is the value in Rn ± the value in Rm shifted as specified. Rn 
 Example:
 ldr r0, [r1, r2, lsl #2] @ r0 ← *(r1 + r2*4)
 注意r0和r1均没有变化
+
+ARM Addressing Modes (Pre-Indexing w\ update
+============================================
+[Rn, #±imm]! Immediate pre-indexed w\update
+Address accessed is as with immediate offset mode, but Rn's value updates to become the address accessed.
+Example:
+ldr r2, [r1, #12]! @ r1 ← r1 + 12 then r2 ← *r1
+
+[Rn, ±Rm]! Register pre-indexed w\update
+Address accessed is as with register offset mode, but Rn's value updates to become the address accessed.
+Example:
+ldr r2, [r0, r1]! @ r0 ← r0 + r1 then r2 ← *r0
+
+[Rn, ±Rm, shift]! Scaled register pre-indexed w\update
+Address accessed is as with scaled register offset mode, but Rn's value updates to become the address accessed.
+Example:
+ldr r2, [r0, r1, lsl #2]! @ r0 ← r0 + r1*4 then r2 ← *r0
+
+注意r0先改变，再使用，和之前两种区别是多了一个！。
+
+
+
+ARM Addressing Modes (Post-Indexing)
+====================================
+[Rn], #±imm Immediate post-indexed
+Address accessed is value found in Rn, and then Rn's value is increased/decreased by imm.
+Example:
+str r2, [r1], +4 @ *r1 ← r2 then r1 ← r1 + 4
+
+[Rn], ±Rm Register post-indexed
+Address accessed is value found in Rn, and then Rn's value is increased/decreased by Rm.
+Example:
+str r0, [r1], r2 @ *r1 ← r0 then r1 ← r1 + r2
+
+[Rn], ±Rm, shift Scaled register post-indexed
+Address accessed is value found in Rn, and then Rn's value is increased/decreased by Rm shifted according to shift.
+Example:
+ldr r0, [r1], r2, lsl #3 @ r0 ← *r1 then r1 ← r1 + r2*8
+注意Rn一定会变化，但是是先使用Rn的值，然后在改变Rn的值，和pre的区别是[]的范围不一样。
+
+
+
+
+
 
