@@ -1,0 +1,12 @@
+ARM Addressing Modes (Pre-Indexing)
+[Rn, ±Rm] Register offset
+Address accessed is the value in Rn ± the value in Rm. Rn and Rm do not change values.
+Example:
+ldr r2, [r0, r1] @ r2 ← *(r0 + r1)
+
+[Rn, ±Rm, shift] Scaled register offset
+Address accessed is the value in Rn ± the value in Rm shifted as specified. Rn and Rm do not change values.
+Example:
+ldr r0, [r1, r2, lsl #2] @ r0 ← *(r1 + r2*4)
+注意r0和r1均没有变化
+
