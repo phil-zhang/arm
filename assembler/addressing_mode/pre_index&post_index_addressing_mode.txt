@@ -28,7 +28,7 @@ Address accessed is as with scaled register offset mode, but Rn's value updates 
 Example:
 ldr r2, [r0, r1, lsl #2]! @ r0 ← r0 + r1*4 then r2 ← *r0
 
-注意r0先改变，再使用，和之前两种区别是多了一个！。
+注意r0先改变，再使用，和之前两种区别是多了一个！。!可以理解成write back的意思。
 
 
 
